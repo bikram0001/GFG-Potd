@@ -1,0 +1,15 @@
+class Solution:
+    def findTwoElement(self, arr):
+        # code here
+        dup = -1
+        n = len(arr)
+        s = 0
+        for i in range(n):
+            s+=abs(arr[i])
+            index = abs(arr[i])-1
+            if(arr[index]<0):
+                dup = index+1
+            arr[index]*=-1
+        me = n*(n+1)//2+dup - s
+        return [dup,me]
+
