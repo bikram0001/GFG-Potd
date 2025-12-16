@@ -1,0 +1,31 @@
+class Solution:
+    def cntWays(self, arr):
+        # code here
+        evenSum = oddSum = 0
+        n = len(arr)
+        ans = 0
+        for i in range(n):
+            if(i&1):
+                oddSum+=arr[i]
+            else:
+                evenSum+=arr[i]
+        evens = odds = 0
+        for i in range(n):
+            if(i&1):
+                odds+=arr[i]
+            else:
+                evens+=arr[i]
+            
+            oddrs = oddSum - odds
+            evenrs = evenSum - evens
+            
+            if(i&1):
+                v1 = odds-arr[i]+evenrs
+                v2 = evens+oddrs
+            else:
+                v1 = evens-arr[i]+oddrs
+                v2 = odds+evenrs
+            if(v1==v2):
+                ans+=1
+        return ans
+        
