@@ -1,0 +1,12 @@
+import bisect
+class Solution:
+    def cntInRange(self, arr, queries):
+        # code here
+        n = len(arr)
+        arr.sort()
+        result = []
+        for a,b in queries:
+            ind1 = bisect.bisect_left(arr,a)
+            ind2 = bisect.bisect_right(arr,b)
+            result.append(ind2-ind1)
+        return result
