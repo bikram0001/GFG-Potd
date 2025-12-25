@@ -1,0 +1,16 @@
+class Solution:
+    def findPeakGrid(self, mat):
+        # code here
+        maxEle = -pow(10,6)
+        row = -1
+        m = len(mat)
+        n = len(mat[0])
+        for i in range(m):
+            if(max(mat[i])>maxEle):
+                maxEle = max(mat[i])
+                row = i
+        for j in range(n):
+            if(mat[row][j]==maxEle):
+                return [row,j]
+        return []
+        
