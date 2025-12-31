@@ -1,0 +1,74 @@
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+'''
+
+class Solution:
+    def addTwoLists(self, head1, head2):
+        # code here
+        head1 = self.removeLeadingZeros(head1)
+        head2 = self.removeLeadingZeros(head2)
+        num1 = self.reverseLinkedList(head1)
+        num2 = self.reverseLinkedList(head2)
+        rem = 0
+        head = prev = None
+        while(num1 and num2):
+            s = num1.data+num2.data+rem
+            rem = s//10
+            s = s%10
+            node = Node(s)
+            if(head == None):
+                head = node
+            else:
+                prev.next = node
+            prev = node
+            num1 = num1.next
+            num2 = num2.next
+            
+        while(num1):
+            s = num1.data+rem
+            rem = s//10
+            s = s%10
+            node = Node(s)
+            if(head == None):
+                head = node
+            else:
+                prev.next = node
+            prev = node
+            num1 = num1.next
+            
+        while(num2):
+            s = num2.data+rem
+            rem = s//10
+            s = s%10
+            node = Node(s)
+            if(head == None):
+                head = node
+            else:
+                prev.next = node
+            prev = node
+            num2 = num2.next
+            
+        if(rem):
+            node = Node(rem)
+            prev.next = node
+        return self.reverseLinkedList(head)
+            
+        
+    def reverseLinkedList(self,head):
+        prev = None
+        while(head):
+            temp = head.next
+            head.next = prev
+            prev = head
+            head = temp
+        return prev
+    
+    def removeLeadingZeros(self,head):
+        while(head and head.data==0):
+            head = head.next
+        return head
+    
+            
