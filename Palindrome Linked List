@@ -1,0 +1,38 @@
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+
+class Solution:
+    def isPalindrome(self, head):
+        # code here
+        slow = fast = head
+        while(fast and fast.next):
+            slow = slow.next
+            fast = fast.next.next
+        rev = self.reverseLinkedList(slow)
+        while(head and rev):
+            if(head.data!=rev.data):
+                return False
+            head = head.next
+            rev = rev.next
+            
+        return True
+        
+    def reverseLinkedList(self,head):
+        if(not head):
+            return None
+        prev = None
+        while(head):
+            temp = head.next
+            head.next = prev
+            prev = head
+            head = temp
+        return prev
+    
+        
+        
+        
