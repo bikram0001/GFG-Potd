@@ -1,0 +1,39 @@
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+
+class Solution:
+    def intersectPoint(self, head1, head2):
+        # code here
+        len1 = self.linkedListLength(head1)
+        len2 = self.linkedListLength(head2)
+        if(len1>len2):
+            dis = len1-len2
+            while(dis>0):
+                head1=head1.next
+                dis-=1
+        if(len2>len1):
+            dis = len2-len1
+            while(dis>0):
+                head2=head2.next
+                dis-=1
+        while(head1 and head2):
+            if(head1==head2):
+                return head1
+            head1=head1.next
+            head2=head2.next
+        return None
+        
+    def linkedListLength(self,head):
+        length = 0
+        while(head):
+            length+=1
+            head = head.next
+        return length
+    
+    
+        
