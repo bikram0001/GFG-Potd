@@ -1,0 +1,34 @@
+'''
+class Node:
+    def __init__(self, d):
+        self.data=d
+        self.next=None
+        self.bottom=None
+        
+'''
+import heapq
+class Solution:
+    def flatten(self, root):
+        # code here
+        if(root == None):
+            return root
+        arr = [[root.data,0,root]]
+        count = 0 
+        head = prev = None
+        while(arr):
+            value,c,node = heapq.heappop(arr)
+            if(node.next!=None):
+                count+=1
+                heapq.heappush(arr,[node.next.data,count,node.next])
+            if(node.bottom!=None):
+                count+=1
+                heapq.heappush(arr,[node.bottom.data,count,node.bottom])
+            node.next = None
+            node.bottom = None
+            
+            if(head == None):
+                head = node
+            else:
+                prev.bottom = node
+            prev = node
+        return head
