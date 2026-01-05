@@ -1,0 +1,14 @@
+class Solution:
+    def maxSubarrayXOR(self, arr, k):
+        # code here
+        n = len(arr)
+        for i in range(k):
+            if(i==0):
+                xor = arr[i]
+            else:
+                xor ^= arr[i]
+        m = xor
+        for i in range(k,n):
+            xor = xor^arr[i-k]^arr[i]
+            m = max(xor,m)
+        return m
