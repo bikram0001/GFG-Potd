@@ -1,0 +1,24 @@
+class Solution:
+    def countDistinct(self, arr, k):
+        # Code here
+        d = {}
+        count = 0
+        n = len(arr)
+        result = []
+        for i in range(k):
+            d[arr[i]]=d.get(arr[i],0)
+            if(d[arr[i]]==0):
+                count+=1
+            d[arr[i]]+=1
+        result.append(count)
+        for i in range(k,n):
+            d[arr[i-k]] -= 1
+            if(d[arr[i-k]]==0):
+                count-=1
+            d[arr[i]] = d.get(arr[i],0)
+            if(d[arr[i]]==0):
+                count+=1
+            d[arr[i]]+=1
+            result.append(count)
+        return result
+        
